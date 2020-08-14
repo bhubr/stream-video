@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "eslint --fix src/",
     "start": "babel-node index.js",
-    "start:dev": "DEBUG=express,videos nodemon -w src/ --exec babel-node src/index.js",
+    "start:dev": "DEBUG=env,express,morgan,videos,http:* nodemon -w src/ --exec babel-node src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -17,8 +17,10 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "mime-types": "^2.1.27",
+    "morgan": "^1.10.0",
     "passport": "^0.4.1",
-    "passport-google-oauth20": "^2.0.0"
+    "passport-google-oauth20": "^2.0.0",
+    "passport-jwt": "^4.0.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.5",
