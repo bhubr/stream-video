@@ -18,3 +18,8 @@ export const googleOAuth = {
   callbackURL: OAUTH_REDIRECT_URI,
   tokenURL: 'https://oauth2.googleapis.com/token'
 }
+
+export const corsWhitelist = [
+  process.env.CLIENT_PUBLIC_ORIGIN,
+  process.env.CLIENT_ADMIN_ORIGIN
+]

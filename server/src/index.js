@@ -2,8 +2,11 @@ import express from 'express'
 import morgan from 'morgan'
 import debug from 'debug'
 import passport from 'passport'
+import cors from 'cors'
+
+// BEFORE loading config
 import './env'
-import { port, publicDir, videosRegex } from './config'
+import { port, publicDir, videosRegex, corsWhitelist } from './config'
 import { jwt as jwtPassport, google as googlePassport } from './passports'
 import handlers from './handlers'
 import authService from './services/auth'
@@ -16,20 +19,19 @@ const info = debug('morgan')
 passport.use(googlePassport)
 passport.use(jwtPassport)
 
-// passport.serializeUser((user, done) => {
-//   console.log(user)
-//   done(null, user)
-// })
-
-// passport.deserializeUser((user, done) => {
-//   console.log(user)
-//   done(null, user)
-// })
-
-// Serve index.html
 app.use(morgan('dev', { stream: { write: (msg) => info(msg) } }))
 app.use(express.static(publicDir))
 app.use(passport.initialize())
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (corsWhitelist.includes(origin)) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  }
+}
+app.use(cors(corsOptions))
 
 // Serve videos
 app.get(videosRegex, handlers.videos)
