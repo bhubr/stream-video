@@ -2,16 +2,16 @@ import mimeTypes from 'mime-types'
 import fs, { promises as fsp } from 'fs'
 import path from 'path'
 import notFound from './notFound'
+import { privateDir } from '../config'
 
-const assetsPath = '../assets'
-const fullAssetsPath = path.resolve(__dirname, assetsPath)
-
+const fullVideosDir = path.resolve(__dirname, '../', privateDir)
+console.log(fullVideosDir)
 export default async (req, res) => {
   const range = req.headers.range
   const filename = req.url.substr(1)
   const contentType = mimeTypes.lookup(filename)
 
-  const fullFilePath = path.join(fullAssetsPath, filename)
+  const fullFilePath = path.join(fullVideosDir, filename)
   console.log(fullFilePath)
 
   let stats

@@ -1,9 +1,5 @@
-import serveIndex from './serveIndex'
-import serveVideo from './serveVideo'
-import notFound from './notFound'
+import videos from './videos'
 
 export default {
-  index: serveIndex,
-  video: serveVideo,
-  notFound
+  videos
 }
