@@ -8,7 +8,7 @@ import { privateDir } from '../config'
 
 const log = debug('videos')
 
-const fullVideosDir = path.resolve(__dirname, '../', privateDir)
+const fullVideosDir = path.resolve(__dirname, '../../', privateDir)
 
 export default async (req, res) => {
   const range = req.headers.range

@@ -2,11 +2,11 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "lint": "eslint --fix index.js handlers/",
+    "lint": "eslint --fix src/",
     "start": "babel-node index.js",
-    "start:dev": "DEBUG=express,videos nodemon --exec babel-node index.js",
+    "start:dev": "DEBUG=express,videos nodemon -w src/ --exec babel-node src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -16,7 +16,9 @@
     "debug": "^4.1.1",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "mime-types": "^2.1.27"
+    "mime-types": "^2.1.27",
+    "passport": "^0.4.1",
+    "passport-google-oauth20": "^2.0.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.5",
