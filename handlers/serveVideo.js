@@ -1,13 +1,12 @@
-const mimeTypes = require('mime-types')
-const fs = require('fs')
-const path = require('path')
-const notFound = require('./notFound')
-const fsp = fs.promises
+import mimeTypes from 'mime-types'
+import fs, { promises as fsp } from 'fs'
+import path from 'path'
+import notFound from './notFound'
 
 const assetsPath = '../assets'
 const fullAssetsPath = path.resolve(__dirname, assetsPath)
 
-module.exports = async (req, res) => {
+export default async (req, res) => {
   const range = req.headers.range
   const filename = req.url.substr(1)
   const contentType = mimeTypes.lookup(filename)

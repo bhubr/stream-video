@@ -1,5 +1,5 @@
-const http = require('http')
-const handlers = require('./handlers')
+import http from 'http'
+import handlers from './handlers'
 
 const routes = {
   '.*.mp4$': handlers.video,

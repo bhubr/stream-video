@@ -1,8 +1,8 @@
-const serveIndex = require('./serveIndex')
-const serveVideo = require('./serveVideo')
-const notFound = require('./notFound')
+import serveIndex from './serveIndex'
+import serveVideo from './serveVideo'
+import notFound from './notFound'
 
-module.exports = {
+export default {
   index: serveIndex,
   video: serveVideo,
   notFound
