@@ -4,16 +4,17 @@ import debug from 'debug'
 import passport from 'passport'
 import './env'
 import { port, publicDir, videosRegex } from './config'
-import { jwt, google } from './passports'
+import { jwt as jwtPassport, google as googlePassport } from './passports'
 import handlers from './handlers'
+import authService from './services/auth'
 import './helpers/logHttp'
 
 const app = express()
 const log = debug('express')
 const info = debug('morgan')
 
-passport.use(google)
-passport.use(jwt)
+passport.use(googlePassport)
+passport.use(jwtPassport)
 
 // passport.serializeUser((user, done) => {
 //   console.log(user)
@@ -41,9 +42,13 @@ app.get(
 app.get(
   '/oauth/callback',
   passport.authenticate('google', { session: false }),
-  (req, res) => {
-    const { id, firstname, lastname, avatar } = req.user
-    res.json({ id, firstname, lastname, avatar })
+  async (req, res) => {
+    const [jwtPayload, jwt] = await authService.generateJwt(req.user)
+    res.cookie('jwt', jwt, {
+      httpOnly: true,
+      secure: req.protocol === 'https'
+    })
+    return res.json(jwtPayload)
   }
 )
 
