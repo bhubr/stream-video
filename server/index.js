@@ -1,24 +1,23 @@
-import http from 'http'
+import express from 'express'
+import debug from 'debug'
 import handlers from './handlers'
+import { port, publicDir } from './config'
 
-const routes = {
-  '.*.mp4$': handlers.video,
-  '.*': handlers.index
-}
+const app = express()
+const log = debug('express')
 
-const getHandler = (url) => {
-  const key = Object.keys(routes).find((re) => new RegExp(re).test(url))
-  console.log(url, key)
-  if (key) return routes[key]
-  return handlers.notFound
-}
+log(' config' , port, publicDir)
 
-http
-  .createServer(function (req, res) {
-    const handler = getHandler(req.url)
-    handler(req, res)
-    // console.log(handler.toString())
-    // res.writeHead(200)
-    // res.end()
-  })
-  .listen(8080)
+// Serve index.html
+app.use(express.static(publicDir))
+
+// Serve videos
+app.get(/.*\.mp4$/i, handlers.video)
+
+app.listen(port, (err) => {
+  if (err) {
+    log('Error while starting up Express', err.message)
+  } else {
+    log('Express app listening on', port)
+  }
+})
