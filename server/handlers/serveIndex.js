@@ -1,7 +1,7 @@
 import { promises as fs } from 'fs'
 import path from 'path'
 
-const htmlPath = '../../client/videojs.html'
+const htmlPath = '../public/index.html'
 const fullHtmlPath = path.resolve(__dirname, htmlPath)
 
 export default (req, res) =>
