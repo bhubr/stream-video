@@ -12,11 +12,13 @@ router.use(
   '/users',
   generic('user', {
     findAll: {
-      sql: `SELECT u.*,GROUP_CONCAT(up.playlist_id) AS playlist_ids FROM user u JOIN user_playlist up ON u.id = up.user_id`,
+      sql: `SELECT u.*,GROUP_CONCAT(up.playlist_id) AS playlist_ids FROM user u LEFT JOIN user_playlist up ON u.id = up.user_id`,
       groupBy: ' GROUP BY u.id',
       mapItem: ({ playlist_ids: playlistIds, ...rest }) => ({
         ...rest,
-        playlist_ids: playlistIds.split(',').map((i) => Number(i))
+        playlist_ids: playlistIds
+          ? playlistIds.split(',').map((i) => Number(i))
+          : []
       })
     }
   })
