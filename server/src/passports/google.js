@@ -5,13 +5,16 @@ import { googleOAuth as googleOAuthConfig } from '../config'
 export default new GoogleStrategy(
   googleOAuthConfig,
   (accessToken, refreshToken, profile, done) => {
+    console.log(profile)
+    if (!profile) return done(new Error('No profile'))
     const {
-      id,
+      id: googleId,
       name: { givenName: firstname, familyName: lastname },
-      _json: { picture: avatar }
+      _json: { email, picture: avatar }
     } = profile
     const user = {
-      id,
+      googleId,
+      email,
       firstname,
       lastname,
       avatar,
