@@ -3,9 +3,9 @@ import genericModel from '../models/generic'
 import queryFilterMiddleware from '../middlewares/queryFilter'
 import queryWhereMiddleware from '../middlewares/queryWhere'
 
-export default (table) => {
+export default (table, overrides) => {
   const router = express.Router()
-  const model = genericModel(table)
+  const model = genericModel(table, overrides)
 
   router.get(
     '/',

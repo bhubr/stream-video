@@ -1,7 +1,7 @@
 const mysql = require('mysql2')
 
 const getReducer = (query) => (carry, k) => {
-  console.log(carry, k, query[k])
+  console.log('reducer', carry, k, query[k])
   const value = query[k]
   if (Array.isArray(value)) {
     const str = value.map(v => mysql.escape(v)).join(',')
@@ -9,6 +9,8 @@ const getReducer = (query) => (carry, k) => {
     console.log(bit)
 
     return `${carry} ${bit}`
+  } else if (typeof value === 'string') {
+    return `${carry} ${k} = ${mysql.escape(value)}`
   }
   return carry
 }
