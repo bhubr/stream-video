@@ -12,7 +12,7 @@ export default {
 
   async registerUser(googleProfile) {
     const { email } = googleProfile
-    const user = await userModel.findOne(email)
+    const user = await userModel.findOne(email, 'email')
     if (user) return user
 
     const isWhitelisted = await userModel.isWhitelisted(email)
