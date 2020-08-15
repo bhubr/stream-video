@@ -15,7 +15,8 @@ router.get(
       httpOnly: true,
       secure: req.protocol === 'https'
     })
-    return res.json(jwtPayload)
+    const { role, ...rest } = jwtPayload
+    return res.json(rest)
   }
 )
 

@@ -4,8 +4,8 @@ import userModel from '../models/user'
 
 export default {
   async generateJwt(reqUser) {
-    const { id, email, firstname, lastname, avatar } = reqUser
-    const jwtPayload = { id, email, firstname, lastname, avatar }
+    const { id, email, firstname, lastname, avatar, role } = reqUser
+    const jwtPayload = { id, email, firstname, lastname, avatar, role }
     const jwt = await sign(jwtPayload, jwtSecret)
     return [jwtPayload, jwt]
   },
