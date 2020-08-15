@@ -24,7 +24,8 @@ app.use(express.static(publicDir))
 app.use(passport.initialize())
 const corsOptions = {
   origin: function (origin, callback) {
-    if (corsWhitelist.includes(origin)) {
+    log('CORS origin check:', origin)
+    if (!origin || corsWhitelist.includes(origin)) {
       callback(null, true)
     } else {
       callback(new Error('Not allowed by CORS'))
