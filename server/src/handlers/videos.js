@@ -4,18 +4,18 @@ import fs, { promises as fsp } from 'fs'
 import path from 'path'
 import debug from 'debug'
 import notFound from './notFound'
-import { privateDir } from '../config'
+import { fullPrivateDir } from '../config'
 
 const log = debug('videos')
 
-const fullVideosDir = path.resolve(__dirname, '../../', privateDir)
+// const fullVideosDir = path.resolve(__dirname, '../../', privateDir)
 
 export default async (req, res) => {
   const range = req.headers.range
   const filename = req.url.substr(1)
   const contentType = mimeTypes.lookup(filename)
 
-  const fullFilePath = path.join(fullVideosDir, filename)
+  const fullFilePath = path.join(fullPrivateDir, filename)
   log(fullFilePath)
 
   let stats
