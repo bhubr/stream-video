@@ -27,7 +27,7 @@ const Navbar = ({ user, logout }) => (
           </li>
           <li>
             <img
-              referrerpolicy="no-referrer"
+              referrerPolicy="no-referrer"
               alt={user.firstname}
               src={user.avatar}
               style={{ maxWidth: 48, borderRadius: '50%' }}
