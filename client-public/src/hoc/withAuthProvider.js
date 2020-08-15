@@ -8,7 +8,8 @@ const withAuthProvider = (Component) => {
     const [ready, setReady] = useState(false)
 
     useEffect(() => {
-      api.getProfile()
+      api
+        .getProfile()
         .then(setUser)
         .catch(console.error)
         .finally(() => setReady(true))
@@ -17,10 +18,15 @@ const withAuthProvider = (Component) => {
     const logout = () => api.logout().then(() => setUser(null))
 
     return (
-
-      <AuthContext.Provider value={{
-        user, setUser, ready, setReady, logout
-      }}>
+      <AuthContext.Provider
+        value={{
+          user,
+          setUser,
+          ready,
+          setReady,
+          logout
+        }}
+      >
         <Component {...props} />
       </AuthContext.Provider>
     )

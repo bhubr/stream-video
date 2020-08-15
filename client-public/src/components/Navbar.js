@@ -1,6 +1,13 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import withAuth from '../hoc/withAuth'
+import { userPropTypes } from '../prop-types'
+
+const propTypes = {
+  user: userPropTypes,
+  logout: PropTypes.func
+}
 
 const Navbar = ({ user, logout }) => (
   <nav className="Navbar">
@@ -11,20 +18,26 @@ const Navbar = ({ user, logout }) => (
       <li>
         <Link to="/login">Login</Link>
       </li>
-      {
-        user && (
-          <>
-            <li>
-              <button type="button" onClick={logout}>Logout</button>
-            </li>
-            <li>
-              <img referrerpolicy="no-referrer" alt={user.firstname} src={user.avatar} />
-            </li>
-          </>
-        )
-      }
+      {user && (
+        <>
+          <li>
+            <button type="button" onClick={logout}>
+              Logout
+            </button>
+          </li>
+          <li>
+            <img
+              referrerpolicy="no-referrer"
+              alt={user.firstname}
+              src={user.avatar}
+            />
+          </li>
+        </>
+      )}
     </ul>
   </nav>
 )
+
+Navbar.propTypes = propTypes
 
 export default withAuth(Navbar)
