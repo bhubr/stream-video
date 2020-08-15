@@ -1,5 +1,5 @@
 import { sign } from 'jsonwebtoken'
-import { jwtSecret } from '../config'
+import { jwtSecret, adminUsers } from '../config'
 import userModel from '../models/user'
 
 export default {
@@ -17,8 +17,9 @@ export default {
 
     const isWhitelisted = await userModel.isWhitelisted(email)
     if (!isWhitelisted) throw new Error(`Non-whitelisted email ${email}`)
+    const role = adminUsers.includes(email) ? 'admin' : 'regular'
     const { googleId, firstname, lastname, avatar } = googleProfile
-    const columnValues = [googleId, email, firstname, lastname, avatar]
+    const columnValues = [googleId, email, firstname, lastname, avatar, role]
     return userModel.create(columnValues)
   }
 }

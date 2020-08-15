@@ -11,6 +11,7 @@ CREATE TABLE user (
   firstname VARCHAR(255),
   lastname VARCHAR(255),
   avatar VARCHAR(255),
+  role ENUM('regular', 'admin') NOT NULL DEFAULT 'regular',
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 

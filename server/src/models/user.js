@@ -21,8 +21,8 @@ export default {
 
   async create(data) {
     const sql = `INSERT INTO
-        user(google_id, email, firstname, lastname, avatar)
-      VALUES (?, ?, ?, ?, ?)`
+        user(google_id, email, firstname, lastname, avatar, role)
+      VALUES (?, ?, ?, ?, ?, ?)`
     const { insertId } = await dbQuery(sql, data)
     return this.findOne(insertId)
   }

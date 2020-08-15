@@ -16,7 +16,8 @@ const {
   DB_HOST,
   DB_NAME,
   DB_USER,
-  DB_PASS
+  DB_PASS,
+  ADMIN_USERS
 } = process.env
 
 export const googleOAuth = {
@@ -35,3 +36,5 @@ export const db = {
   user: DB_USER,
   password: DB_PASS
 }
+
+export const adminUsers = ADMIN_USERS.split(',')
