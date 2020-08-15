@@ -27,6 +27,7 @@ app.use(express.static(publicDir))
 app.use(passport.initialize())
 const corsOptions = {
   credentials: true,
+  exposedHeaders: ['Content-Range', 'X-Total-Count'],
   origin: function (origin, callback) {
     log('CORS origin check:', origin)
     if (!origin || corsWhitelist.includes(origin)) {
