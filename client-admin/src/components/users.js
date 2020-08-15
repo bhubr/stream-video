@@ -1,5 +1,15 @@
 import React from 'react'
-import { List, Datagrid, TextField, EmailField, DateField } from 'react-admin'
+import {
+  List,
+  Datagrid,
+  TextField,
+  ImageField,
+  EmailField,
+  DateField,
+  ReferenceArrayField,
+  SingleFieldList,
+  ChipField
+} from 'react-admin'
 
 export const UserList = (props) => (
   <List {...props}>
@@ -9,8 +19,21 @@ export const UserList = (props) => (
       <EmailField source="email" />
       <TextField source="firstname" />
       <TextField source="lastname" />
-      <TextField source="avatar" />
+      <ImageField
+        source="avatar"
+        referrerpolicy="no-referrer"
+        className="img-small"
+      />
       <TextField source="role" />
+      <ReferenceArrayField
+        label="Playlists"
+        reference="playlists"
+        source="playlist_ids"
+      >
+        <SingleFieldList>
+          <ChipField source="title" />
+        </SingleFieldList>
+      </ReferenceArrayField>
       <DateField source="created_at" />
     </Datagrid>
   </List>

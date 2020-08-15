@@ -30,10 +30,9 @@ export const PlaylistEdit = (props) => (
       <TextInput source="title" validate={required()} />
       <TextInput source="folder" validate={required()} />
       <TextInput multiline source="description" validate={required()} />
-      <DateInput label="Publication date" source="published_at" />
       <ReferenceManyField
         label="Videos"
-        reference="api/videos"
+        reference="videos"
         target="playlist_id"
       >
         <Datagrid>

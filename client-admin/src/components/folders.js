@@ -8,7 +8,7 @@ export const FolderList = (props) => (
       <ReferenceField
         label="Playlist"
         source="folder_name"
-        reference="api/playlists"
+        reference="playlists"
       >
         <TextField source="title" />
       </ReferenceField>
