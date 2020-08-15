@@ -21,7 +21,7 @@ export const UserList = (props) => (
       <TextField source="lastname" />
       <ImageField
         source="avatar"
-        referrerpolicy="no-referrer"
+        referrerPolicy="no-referrer"
         className="img-small"
       />
       <TextField source="role" />
