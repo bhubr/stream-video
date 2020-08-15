@@ -11,7 +11,7 @@ const propTypes = {
 
 const Navbar = ({ user, logout }) => (
   <nav className="Navbar">
-    <ul>
+    <ul style={{ display: 'flex', justifyContent: 'space-between' }}>
       <li>
         <Link to="/">Home</Link>
       </li>
@@ -30,6 +30,7 @@ const Navbar = ({ user, logout }) => (
               referrerpolicy="no-referrer"
               alt={user.firstname}
               src={user.avatar}
+              style={{ maxWidth: 48, borderRadius: '50%' }}
             />
           </li>
         </>
