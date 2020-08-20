@@ -4,42 +4,35 @@ import {
   Edit,
   SimpleForm,
   TextInput,
-  ReferenceManyField,
-  Datagrid,
   TextField,
-  EditButton,
+  ReferenceField,
   required
 } from 'react-admin'
 
-export const PlaylistCreate = (props) => (
+export const VideoCreate = (props) => (
   <Create {...props}>
     <SimpleForm>
       <TextInput source="title" />
-      <TextInput source="folder" />
+      <TextInput source="file" />
       <TextInput source="description" options={{ multiline: true }} />
     </SimpleForm>
   </Create>
 )
 
-export const PlaylistEdit = (props) => (
+export const VideoEdit = (props) => (
   <Edit {...props}>
     <SimpleForm>
       <TextInput disabled label="Id" source="id" />
       <TextInput source="title" validate={required()} />
-      <TextInput source="folder" validate={required()} />
+      <TextInput source="file" validate={required()} />
       <TextInput multiline source="description" validate={required()} />
-      <ReferenceManyField
-        label="Videos"
-        reference="videos"
-        target="playlist_id"
+      <ReferenceField
+        label="Playlist"
+        source="playlist_id"
+        reference="playlists"
       >
-        <Datagrid>
-          <TextField source="title" />
-          <TextField source="description" />
-          <TextField source="file" />
-          <EditButton />
-        </Datagrid>
-      </ReferenceManyField>
+        <TextField source="title" />
+      </ReferenceField>
     </SimpleForm>
   </Edit>
 )

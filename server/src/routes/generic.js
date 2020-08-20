@@ -29,5 +29,17 @@ export default (table, overrides) => {
     res.status(201).json(record)
   })
 
+  router.put('/:id', async (req, res) => {
+    const id = Number(req.params.id)
+    const record = await model.update(id, req.body)
+    res.json(record)
+  })
+
+  router.delete('/:id', async (req, res) => {
+    const id = Number(req.params.id)
+    await model.delete(id)
+    res.sendStatus(204)
+  })
+
   return router
 }
