@@ -1,12 +1,12 @@
 import React from 'react'
 import { fetchUtils, Admin, Resource, ListGuesser } from 'react-admin'
 import jsonServerProvider from 'ra-data-json-server'
-import { stringify } from 'query-string'
+// import { stringify } from 'query-string'
 import { UserList } from './components/users'
 import { FolderList } from './components/folders'
 import { PlaylistCreate, PlaylistEdit } from './components/playlists'
 import { serverUrl } from './config'
-import "./App.css"
+import './App.css'
 
 const httpClient = (url, options = {}) => {
   if (!options.headers) {

@@ -11,7 +11,8 @@
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
-    "react-simple-oauth2-login": "^0.1.5"
+    "react-simple-oauth2-login": "^0.1.5",
+    "video.js": "^7.8.4"
   },
   "scripts": {
     "lint": "eslint --fix src/",

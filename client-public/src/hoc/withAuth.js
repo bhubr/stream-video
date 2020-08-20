@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import AuthContext from '../context/AuthContext'
 
 const withAuth = (Component) => {
-  return (props) => {
+  const CompWithAuth = (props) => {
     const { user, setUser, logout } = useContext(AuthContext)
     return (
       <Component
@@ -14,6 +14,8 @@ const withAuth = (Component) => {
       />
     )
   }
+  CompWithAuth.displayName = 'withAuth'
+  return CompWithAuth
 }
 
 export default withAuth

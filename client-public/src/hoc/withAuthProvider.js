@@ -3,7 +3,7 @@ import api from '../services/api'
 import AuthContext from '../context/AuthContext'
 
 const withAuthProvider = (Component) => {
-  return (props) => {
+  const CompWithAuth = (props) => {
     const [user, setUser] = useState(null)
     const [ready, setReady] = useState(false)
 
@@ -31,6 +31,8 @@ const withAuthProvider = (Component) => {
       </AuthContext.Provider>
     )
   }
+  CompWithAuth.displayName = 'withAuthProvider'
+  return CompWithAuth
 }
 
 export default withAuthProvider

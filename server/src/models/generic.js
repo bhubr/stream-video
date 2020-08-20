@@ -8,8 +8,7 @@ export default (table, allOverrides = {}) => ({
     const where = modifiers.where || ''
     sql = `${sql} ${where} ${groupBy}`
     console.log(sql, modifiers)
-    return dbQuery(sql)
-    .then((data) => {
+    return dbQuery(sql).then((data) => {
       // if (table !== 'user') return data
       if (typeof overrides.mapItem !== 'function') return data
       return data.map(overrides.mapItem)
