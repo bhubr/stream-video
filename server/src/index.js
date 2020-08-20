@@ -7,10 +7,13 @@ import cookieParser from 'cookie-parser'
 
 // BEFORE loading config
 import './env'
-import { port, publicDir, videosRegex, corsWhitelist } from './config'
+import { port, publicDir, corsWhitelist } from './config'
 import { jwt as jwtPassport, google as googlePassport } from './passports'
 import handlers from './handlers'
 import routes from './routes'
+import { checkJwt } from './middlewares/auth'
+import { checkVideoAccess } from './middlewares/access'
+
 import './helpers/logHttp'
 
 const app = express()
@@ -40,7 +43,12 @@ const corsOptions = {
 app.use(cors(corsOptions))
 
 // Serve videos
-app.get(videosRegex, handlers.videos)
+app.get(
+  '/videos/:playlistPath/:videoFile',
+  checkJwt,
+  checkVideoAccess,
+  handlers.videos
+)
 
 app.use('/api', routes.api)
 app.use('/oauth', routes.oauth)
