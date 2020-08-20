@@ -3,6 +3,7 @@ import auth from './auth'
 import oauth from './oauth'
 import generic from './generic'
 import folders from './folders'
+import scan from './scan'
 import users from './users'
 
 const router = express.Router()
@@ -28,6 +29,7 @@ router.use(
 router.use('/playlists', generic('playlist'))
 router.use('/videos', generic('video'))
 router.use('/folders', folders)
+router.use('/scan', scan)
 
 export default {
   api: router,

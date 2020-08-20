@@ -2,6 +2,7 @@ import React from 'react'
 import { fetchUtils, Admin, Resource, ListGuesser } from 'react-admin'
 import jsonServerProvider from 'ra-data-json-server'
 // import { stringify } from 'query-string'
+import Dashboard from './Dashboard'
 import { UserList } from './components/users'
 import { FolderList } from './components/folders'
 import { PlaylistCreate, PlaylistEdit } from './components/playlists'
@@ -45,7 +46,11 @@ const dataProvider = jsonServerProvider(`${serverUrl}/api`, httpClient)
 // }
 
 const App = () => (
-  <Admin dataProvider={dataProvider} title="Example Admin">
+  <Admin
+    dashboard={Dashboard}
+    dataProvider={dataProvider}
+    title="Example Admin"
+  >
     <Resource name="whitelisted-users" list={ListGuesser} />
     <Resource name="users" list={UserList} />
     <Resource name="folders" list={FolderList} />
