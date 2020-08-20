@@ -16,7 +16,7 @@ export const PlaylistCreate = (props) => (
     <SimpleForm>
       <TextInput source="title" />
       <TextInput source="folder" />
-      <TextInput source="description" options={{ multiLine: true }} />
+      <TextInput source="description" options={{ multiline: true }} />
     </SimpleForm>
   </Create>
 )
