@@ -25,5 +25,16 @@ export default (table, allOverrides = {}) => ({
     const sql = `INSERT INTO ${table} SET ?`
     const { insertId } = await dbQuery(sql, [data])
     return this.findOne(insertId)
+  },
+
+  async update(id, data) {
+    const sql = `UPDATE ${table} SET ? WHERE id = ?`
+    await dbQuery(sql, [data, id])
+    return this.findOne(id)
+  },
+
+  async delete(id) {
+    const sql = `DELETE FROM ${table} WHERE id = ?`
+    await dbQuery(sql, [id])
   }
 })
