@@ -1,5 +1,6 @@
 import React from 'react'
 import { List, Datagrid, TextField, ReferenceField } from 'react-admin'
+import ExistingField from './ExistingField'
 
 export const FolderList = (props) => (
   <List {...props}>
@@ -7,12 +8,12 @@ export const FolderList = (props) => (
       <TextField source="id" />
       <ReferenceField
         label="Playlist"
-        source="folder_name"
+        source="playlist_id"
         reference="playlists"
       >
         <TextField source="title" />
       </ReferenceField>
-      <TextField source="folder_name" />
+      <ExistingField field="playlist_id" source="folder_name" />
     </Datagrid>
   </List>
 )
