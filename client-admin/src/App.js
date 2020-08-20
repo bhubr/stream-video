@@ -5,6 +5,7 @@ import jsonServerProvider from 'ra-data-json-server'
 import Dashboard from './Dashboard'
 import { UserList } from './components/users'
 import { FolderList } from './components/folders'
+import { VideoCreate, VideoEdit } from './components/videos'
 import { PlaylistCreate, PlaylistEdit } from './components/playlists'
 import { serverUrl } from './config'
 import './App.css'
@@ -60,7 +61,12 @@ const App = () => (
       create={PlaylistCreate}
       edit={PlaylistEdit}
     />
-    <Resource name="videos" list={ListGuesser} />
+    <Resource
+      name="videos"
+      list={ListGuesser}
+      edit={VideoEdit}
+      create={VideoCreate}
+    />
   </Admin>
 )
 
