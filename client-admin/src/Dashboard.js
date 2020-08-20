@@ -21,7 +21,9 @@ const Dashboard = () => {
   const scan = () =>
     fetch(`${serverUrl}/api/scan`)
       .then((response) => response.json())
-      .then(({ playlists }) => alert(`${playlists} created`))
+      .then(({ playlists, videos }) =>
+        alert(`${playlists} playlists created, ${videos} videos created`)
+      )
 
   return (
     <Card className={classes.root}>
